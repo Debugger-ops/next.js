@@ -1,12 +1,48 @@
-# Enforce LF line endings for all text files (fixes Windows CRLF test flakiness)
+# ----------------------------
+# Line endings
+# ----------------------------
+
+# Enforce LF line endings for all text files (cross-platform consistency)
 * text=auto eol=lf
 
-.github/actions/*/dist/** -text linguist-vendored
+# ----------------------------
+# Ignore generated / vendored files for GitHub language stats
+# ----------------------------
+
+# Next.js build output
+.next/** -text linguist-vendored
+
+# Node modules
+node_modules/** -text linguist-vendored
+
+# Dist or compiled folders
+dist/** -text linguist-vendored
 packages/next/bundles/** -text linguist-vendored
 packages/next/compiled/** -text linguist-vendored
+.github/actions/*/dist/** -text linguist-vendored
 
-# Make next/src/build folder indexable for github search
+# ----------------------------
+# Allow indexing of build folder if needed
+# ----------------------------
 build/** linguist-generated=false
 
-# Custom merge driver for auto-generated errors.json
+# ----------------------------
+# Merge drivers for auto-generated files
+# ----------------------------
 packages/next/errors.json merge=errors-json
+
+# ----------------------------
+# Optional: treat certain text files explicitly
+# ----------------------------
+*.js text
+*.jsx text
+*.ts text
+*.tsx text
+*.json text
+*.css text
+*.scss text
+*.html text
+*.md text
+*.yml text
+*.yaml text
+*.env text
